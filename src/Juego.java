@@ -148,33 +148,38 @@ public class Juego {
         }
     }
     private  void crearPersonajesRandom(int jugador){
+        Nombres ListaNombres=new Nombres();
         for (int i=1; i<=3;i++){
-            String nombre= "Generico";//Reemplaza cn api
-            String apodo= "Generico";
-            String nacimiento="8/7/2002";
+            String nombre;
+            String apodo= ListaNombres.getApodo();
             int edad= (int)(Math.random()*300)+1;
             int velocidad=(int)(Math.random()*10)+1;
             int destreza=(int)(Math.random()*5)+1;
             int fuerza=(int)(Math.random()*10)+1;
             int nivel=(int)(Math.random()*10)+1;
             int armadura=(int)(Math.random()*10)+1;
+            int anio=1900-edad;
+            String nacimiento="8/7/"+anio;
             Personaje personaje = null;
             int raza=(int)(Math.random()*3)+1;
             try{
                 switch (raza){
                     case 1:
+                        nombre=ListaNombres.getNombreHumano();
                         personaje=new Humano(nombre,apodo,
                                 nacimiento,edad,velocidad,destreza,fuerza,nivel,armadura);
                         System.out.println("Creando Humano para jugador "+jugador);
 
                         break;
                     case 2:
+                        nombre=ListaNombres.getNombreElfo();
                         personaje=new Elfo(nombre,apodo,
                                 nacimiento,edad,velocidad,destreza,fuerza,nivel,armadura);
                         System.out.println("Creando Elfo para jugador "+jugador);
 
                         break;
                     case 3:
+                        nombre=ListaNombres.getNombreOrco();
                         personaje=new Orco(nombre,apodo,
                                 nacimiento,edad,velocidad,destreza,fuerza,nivel,armadura);
                         System.out.println("Creando orco para jugador "+jugador);
