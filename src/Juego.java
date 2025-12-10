@@ -125,11 +125,11 @@ public class Juego {
                 }
 
             }catch (Exception e){
-                System.out.println(e);
+                System.err.println(e.getMessage());
             }
             if(personaje!=null){
                 System.out.println("Este es su personaje");
-                System.out.println(personaje.toString());
+                System.out.println(personaje);
                 System.out.println("Desea borrarlo y crearlo de nuevo?");
                 String opcion2= scanner.nextLine();
                 if (opcion2.equalsIgnoreCase("no")){
@@ -201,7 +201,7 @@ public class Juego {
                 }
 
             }catch (Exception e){
-                System.out.println(e);
+                System.err.println(e.getMessage());
                 i=i-1;
             }
         }
@@ -216,10 +216,10 @@ public class Juego {
         }
         do {
             int turnos=0;
-            int tamaño1=(jugador1.size());
-            int tamaño2=(jugador2.size());
-            int posicion1 = (int) (Math.random() * tamaño1);
-            int posicion2 = (int) (Math.random() * tamaño2);
+            int tamanio1=(jugador1.size());
+            int tamanio2=(jugador2.size());
+            int posicion1 = (int) (Math.random() * tamanio1);
+            int posicion2 = (int) (Math.random() * tamanio2);
             Personaje personaje1 = jugador1.get(posicion1);
             Personaje personaje2 = jugador2.get(posicion2);
             System.out.println("Luchador del jugador 1 es "+personaje1.getNombre()+"'"+personaje1.getApodo()+" vs "

@@ -31,23 +31,19 @@ public abstract class Personaje implements Atacar {
 
     public boolean Comprobar (Integer edad,Integer velocidad,Integer destreza, Integer fuerza,
                               Integer nivel, Integer armadura) throws Exception {
-        if (( Rango(edad,0,300)||
-                Rango(velocidad, 0, 10) ||
-                Rango(destreza, 0, 5) ||
-                Rango(fuerza, 0, 10) ||
-                Rango(nivel, 0, 10) ||
-                Rango(armadura, 0, 10))){
+        if (( Rango(edad, 300)||
+                Rango(velocidad, 10) ||
+                Rango(destreza, 5) ||
+                Rango(fuerza, 10) ||
+                Rango(nivel, 10) ||
+                Rango(armadura, 10))){
             throw new Exception("Una de las variables supera los parametros establecidos");
         }else{
             return true;
         }
     }
-    private boolean Rango(Integer valor,Integer min,Integer max){
-        if (valor<min || valor>max){
-            return true;
-        }else{
-            return false;
-        }
+    private boolean Rango(Integer valor, Integer max){
+        return valor < (Integer) 0 || valor > max;
     }
 
     public Integer getSalud() {
@@ -74,8 +70,7 @@ public abstract class Personaje implements Atacar {
     @Override
     public Double efectividadDisparo() {
         int valor= (int) (Math.random() * 100)+1;
-        double porcentaje=valor;
-        return porcentaje/100;
+        return (double) valor /100;
     }
 
     @Override

@@ -1,10 +1,9 @@
-import java.util.ArrayList;
 
 public class Nombres {
-    private String[] nombresHumanos={"Aldric","Kaelen","Vanya","Gareth","Elara","Thorne","Isolde"};
-    private String[] nombresElfos = {"Sylvaris", "Liriel", "Thalor", "Aeris", "Faenor", "Elowen", "Galadriel"};
-    private String[] nombresOrcos = {"Gorak", "Thruk", "Urzoth", "Zog", "Krash", "Durash", "Mogor"};
-    private String[] apodos = {"El Grande", "Destructor", "El Sabio", "Sombra", "Martillo", "Veloz", "El Bravo"};
+    private final String[] nombresHumanos={"Aldric","Kaelen","Vanya","Gareth","Elara","Thorne","Isolde"};
+    private final String[] nombresElfos = {"Sylvaris", "Liriel", "Thalor", "Aeris", "Faenor", "Elowen", "Galadriel"};
+    private final String[] nombresOrcos = {"Gorak", "Thruk", "Urzoth", "Zog", "Krash", "Durash", "Mogor"};
+    private final String[] apodos = {"El Grande", "Destructor", "El Sabio", "Sombra", "Martillo", "Veloz", "El Bravo"};
     public String getNombreHumano() {
         int numero=(int)(Math.random()*nombresHumanos.length);
         return nombresHumanos[numero];
