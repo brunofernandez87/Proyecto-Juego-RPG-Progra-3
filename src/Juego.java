@@ -208,6 +208,12 @@ public class Juego {
     }
     public void Partida(){
         System.out.println("Creando Partida");
+        int numero=(int) (Math.random() * 2)+1;
+        if(numero==1){
+            System.out.println("Arranca el jugador 1");
+        }else{
+            System.out.println("Arranca el jugador 2");
+        }
         do {
             int turnos=0;
             int tamaño1=(jugador1.size());
@@ -219,27 +225,56 @@ public class Juego {
             System.out.println("Luchador del jugador 1 es "+personaje1.getNombre()+"'"+personaje1.getApodo()+" vs "
                     +"luchador del jugador 2  "+personaje2.getNombre()+"'"+personaje2.getApodo());
             do {
-                if (personaje1.getSalud()>0) {
-                    personaje1.atacar(personaje2);
-                }
-                if (personaje2.getSalud()>0){
-                    personaje2.atacar(personaje1);
+                System.out.println("inicio del turno"+turnos);
+                if (numero == 1) {
+                    if (personaje1.getSalud() > 0) {
+                        personaje1.atacar(personaje2);
+                    }
+                    if (personaje2.getSalud() > 0) {
+                        personaje2.atacar(personaje1);
+                    }
+                } else {
+                    if (personaje2.getSalud() > 0) {
+                        personaje2.atacar(personaje1);
+                    }
+                    if (personaje1.getSalud() > 0) {
+                        personaje1.atacar(personaje2);
+                    }
                 }
                 turnos++;
             } while (personaje1.getSalud() > 0 && personaje2.getSalud() > 0 && turnos < 7);
+            boolean AlguienMurio=false;
             if (personaje1.getSalud() <= 0) {
                 System.out.println("Murio "+ personaje1.getNombre()+" del jugador 1");
                 jugador1.remove(personaje1);
-            }
-            if (personaje2.getSalud() <= 0) {
+                numero=1;
+                System.out.println("Arranca el jugador 1");
+                AlguienMurio=true;
+            }else if (personaje2.getSalud() <= 0) {
                 System.out.println("Murio "+ personaje2.getNombre()+" del jugador 2");
                 jugador2.remove(personaje2);
+                numero=2;
+                System.out.println("Arranca el jugador 2");
+                AlguienMurio=true;
+            }
+            if (!AlguienMurio) {
+                System.out.println("Hubo empate nadie murio se sortea el inicio");
+                numero=(int) (Math.random() * 2)+1;
+                if(numero==1){
+                    System.out.println("Arranca el jugador 1");
+                }else{
+                    System.out.println("Arranca el jugador 2");
+                }
             }
         }while(!jugador1.isEmpty() && !jugador2.isEmpty());
         if (jugador1.isEmpty()){
             System.out.println("Jugador 2 gana");
+            System.out.println("Le quedaron vivos :" );
+            Recorrer_personajes(jugador2);
         }else{
             System.out.println("Jugador 1 gana");
+            System.out.println("Le quedaron vivos :" );
+            Recorrer_personajes(jugador1);
         }
     }
     public void Recorrer_personajes(List<Personaje>jugador){
