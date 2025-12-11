@@ -5,6 +5,8 @@ import java.util.Scanner;
 public class Juego {
     protected List<Personaje> jugador1 = new ArrayList<>();
     protected List<Personaje> jugador2 = new ArrayList<>();
+    protected List<Personaje> muertosJugador1 = new ArrayList<>();
+    protected List<Personaje> muertosJugador2 = new ArrayList<>();
     public void Menu(){
         int opcion=0;
         Scanner scanner = new Scanner(System.in);
@@ -32,6 +34,8 @@ public class Juego {
                     case 1:
                         jugador1.clear();
                         jugador2.clear();
+                        muertosJugador1.clear();
+                        muertosJugador2.clear();
                         System.out.println("¿Desea crear los personajes usted?");
                         String opcion2= scanner.nextLine();
                         if (opcion2.equals("si")){
@@ -46,7 +50,7 @@ public class Juego {
                         Recorrer_personajes(jugador1);
                         System.out.println("Estos son los personajes del jugador 2");
                         Recorrer_personajes(jugador2);
-                        Partida();
+                        Partida(scanner);
                         break;
                     case 2:
                         System.out.println("Cargando partidas anteriores");
@@ -206,7 +210,8 @@ public class Juego {
             }
         }
     }
-    public void Partida(){
+    public void Partida(Scanner scanner){
+        Buffs buffs=new Buffs();
         System.out.println("Creando Partida");
         int numero=(int) (Math.random() * 2)+1;
         if(numero==1){
@@ -246,13 +251,17 @@ public class Juego {
             boolean AlguienMurio=false;
             if (personaje1.getSalud() <= 0) {
                 System.out.println("Murio "+ personaje1.getNombre()+" del jugador 1");
+                muertosJugador1.add(personaje1);
                 jugador1.remove(personaje1);
+                buffs.AplicarBuffs(personaje2,jugador2,muertosJugador2,scanner);
                 numero=1;
                 System.out.println("Arranca el jugador 1");
                 AlguienMurio=true;
             }else if (personaje2.getSalud() <= 0) {
+                muertosJugador2.add(personaje2);
                 System.out.println("Murio "+ personaje2.getNombre()+" del jugador 2");
                 jugador2.remove(personaje2);
+                buffs.AplicarBuffs(personaje1,jugador1,muertosJugador1,scanner);
                 numero=2;
                 System.out.println("Arranca el jugador 2");
                 AlguienMurio=true;
@@ -271,10 +280,26 @@ public class Juego {
             System.out.println("Jugador 2 gana");
             System.out.println("Le quedaron vivos :" );
             Recorrer_personajes(jugador2);
+            if (muertosJugador1.isEmpty()){
+                System.out.println("Felicidades nadie murio");
+            }else {
+                System.out.println("Los personajes que murieron son: ");
+                Recorrer_personajes(muertosJugador1);
+            }
+            System.out.println("Del jugador 2 murieron: ");
+            Recorrer_personajes(muertosJugador2);
         }else{
             System.out.println("Jugador 1 gana");
             System.out.println("Le quedaron vivos :" );
             Recorrer_personajes(jugador1);
+            if (muertosJugador2.isEmpty()){
+                System.out.println("Felicidades nadie murio");
+            }else {
+                System.out.println("Los personajes que murieron son: ");
+                Recorrer_personajes(muertosJugador2);
+            }
+            System.out.println("Del jugador 1 murieron: ");
+            Recorrer_personajes(muertosJugador1);
         }
     }
     public void Recorrer_personajes(List<Personaje>jugador){
