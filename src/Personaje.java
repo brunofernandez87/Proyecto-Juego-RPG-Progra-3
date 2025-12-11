@@ -62,6 +62,22 @@ public abstract class Personaje implements Atacar {
         this.salud = salud;
     }
 
+    public Integer getFuerza() {
+        return fuerza;
+    }
+
+    public void setFuerza(Integer fuerza) {
+        this.fuerza = fuerza;
+    }
+
+    public Integer getArmadura() {
+        return armadura;
+    }
+
+    public void setArmadura(Integer armadura) {
+        this.armadura = armadura;
+    }
+
     @Override
     public Integer PD() {
         return destreza*fuerza*nivel;
