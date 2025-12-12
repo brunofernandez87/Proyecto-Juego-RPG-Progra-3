@@ -219,6 +219,7 @@ public class Juego {
         Buffs buffs=new Buffs();
         StringBuilder reporte = new StringBuilder();
         registrar("Creando Partida...",reporte);
+        esperar(2);
         int numero=(int) (Math.random() * 2)+1;
         if(numero==1){
             registrar("Arranca el jugador 1",reporte);
@@ -236,21 +237,25 @@ public class Juego {
             String texto="Luchador del jugador 1 es "+personaje1.getNombre()+"'"+personaje1.getApodo()+" vs "
                     +"luchador del jugador 2  "+personaje2.getNombre()+"'"+personaje2.getApodo();
             registrar(texto,reporte);
+            esperar(2);
             do {
                 registrar("-----Inicio del turno"+turnos+"-------",reporte);
                 if (numero == 1) {
                     if (personaje1.getSalud() > 0) {
                         personaje1.atacar(personaje2,reporte);
+                        esperar(2);
                     }
                     if (personaje2.getSalud() > 0) {
                         personaje2.atacar(personaje1,reporte);
-                    }
+                        esperar(2);}
                 } else {
                     if (personaje2.getSalud() > 0) {
                         personaje2.atacar(personaje1,reporte);
+                        esperar(2);
                     }
                     if (personaje1.getSalud() > 0) {
                         personaje1.atacar(personaje2,reporte);
+                        esperar(2);
                     }
                 }
                 turnos++;
@@ -317,10 +322,18 @@ public class Juego {
             Personaje personaje=jugador.get(i);
             System.out.println("Este es el personaje numero "+ (i+1));
             System.out.println(personaje.toString());
+            esperar(2);
         }
     }
     private void registrar(String mensaje, StringBuilder reporte) {
         System.out.println(mensaje);
         reporte.append(mensaje).append("\n");
+    }
+    private void esperar(int segundos){
+        try {
+            Thread.sleep(segundos*1000);
+        } catch (InterruptedException e) {
+            System.out.println("Error en la espera");
+        }
     }
 }
