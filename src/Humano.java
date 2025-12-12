@@ -6,14 +6,16 @@ public class Humano extends Personaje{
     }
 
     @Override
-    public void atacar(Personaje enemigo) {
+    public void atacar(Personaje enemigo, StringBuilder reporte) {
         double danio=(((valorAtaque()*efectividadDisparo())-enemigo.valorDefensa())/500)*100;
         if(danio <0){
             danio=0.0;
         }
         int salud=enemigo.getSalud()-(int)danio;
         enemigo.setSalud(salud);
-        System.out.println("Humano "+this.nombre+" ataca y causa "+(int)danio+" de daño a "+enemigo.getNombre());
+        String mensaje="Humano "+this.nombre+" ataca y causa "+(int)danio+" de daño a "+enemigo.getNombre();
+        reporte.append(mensaje).append("\n");
+        System.out.println(mensaje);
     }
     @Override
     public String toString() {

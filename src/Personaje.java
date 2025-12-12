@@ -98,5 +98,5 @@ public abstract class Personaje implements Atacar {
     public Double valorAtaque() {
         return PD()*efectividadDisparo();
     }
-    public abstract void atacar(Personaje enemigo);
+    public abstract void atacar(Personaje enemigo,StringBuilder reporte);
 }

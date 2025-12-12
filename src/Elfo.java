@@ -4,14 +4,18 @@ public class Elfo extends Personaje{
     }
 
     @Override
-    public void atacar(Personaje enemigo) {
-        double danio=((((valorAtaque()*efectividadDisparo())-enemigo.valorDefensa())/500)*100)*1.05;
+    public void atacar(Personaje enemigo,StringBuilder reporte) {
+        Double ED = this.efectividadDisparo();
+        Double VA = this.PD() * ED;
+        double danio=((((VA*ED)-enemigo.valorDefensa())/500)*100)*1.05;
         if(danio <0){
             danio=0.0;
         }
         int salud=enemigo.getSalud()-(int)danio;
         enemigo.setSalud(salud);
-        System.out.println("Elfo "+this.nombre+" ataca y causa "+(int)danio+" de daño a "+enemigo.getNombre());
+        String mensaje="Elfo "+this.nombre+" ataca y causa "+(int)danio+" de daño a "+enemigo.getNombre();
+        reporte.append(mensaje).append("\n");
+        System.out.println(mensaje);
     }
 
     @Override

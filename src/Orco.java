@@ -5,14 +5,16 @@ public class Orco extends Personaje{
     }
 
     @Override
-    public void atacar(Personaje enemigo) {
+    public void atacar(Personaje enemigo,StringBuilder reporte) {
         double danio= ((((valorAtaque()*efectividadDisparo())-enemigo.valorDefensa())/500)*100)*1.1;
         if(danio <0){
             danio=0.0;
         }
         int salud=enemigo.getSalud()-(int)danio;
         enemigo.setSalud(salud);
-        System.out.println("Orco "+this.nombre+" ataca y causa "+(int)danio+" de daño a "+enemigo.getNombre());
+        String mensaje="Orco "+this.nombre+" ataca y causa "+(int)danio+" de daño a "+enemigo.getNombre();
+        reporte.append(mensaje).append("\n");
+        System.out.println(mensaje);
     }
 
     @Override

@@ -15,6 +15,7 @@ public class Juego {
         System.out.println("1 jugar");
         System.out.println("2 ver partidas anteriores");
         System.out.println("3 como jugar");
+        System.out.println("4 borrar partidas anteriores");
         System.out.println("0 salir");
         System.out.println("Ingrese una opcion");
             if (scanner.hasNextInt()) {
@@ -29,6 +30,7 @@ public class Juego {
         scanner.close();
     }
     public void opciones(int opcion,Scanner scanner){
+        Log log=new Log();
             if (opcion != 0){
                 switch (opcion){
                     case 1:
@@ -54,10 +56,16 @@ public class Juego {
                         break;
                     case 2:
                         System.out.println("Cargando partidas anteriores");
+                        log.mostrarHistorial();
                         break;
                     case 3:
                         System.out.println("Las reglas del juego son:");
                         break;
+                    case 4:
+                        System.out.println("Borrando partidas anteriores");
+                        log.borrarHistorial();
+                        break;
+
                     default:
                         System.out.println("Opcion no valida intente nuevamente");
                         break;
@@ -211,13 +219,15 @@ public class Juego {
         }
     }
     public void Partida(Scanner scanner){
+        Log log=new Log();
         Buffs buffs=new Buffs();
-        System.out.println("Creando Partida");
+        StringBuilder reporte = new StringBuilder();
+        registrar("Creando Partida...",reporte);
         int numero=(int) (Math.random() * 2)+1;
         if(numero==1){
-            System.out.println("Arranca el jugador 1");
+            registrar("Arranca el jugador 1",reporte);
         }else{
-            System.out.println("Arranca el jugador 2");
+            registrar("Arranca el jugador 2",reporte);
         }
         do {
             int turnos=0;
@@ -227,80 +237,84 @@ public class Juego {
             int posicion2 = (int) (Math.random() * tamanio2);
             Personaje personaje1 = jugador1.get(posicion1);
             Personaje personaje2 = jugador2.get(posicion2);
-            System.out.println("Luchador del jugador 1 es "+personaje1.getNombre()+"'"+personaje1.getApodo()+" vs "
-                    +"luchador del jugador 2  "+personaje2.getNombre()+"'"+personaje2.getApodo());
+            String texto="Luchador del jugador 1 es "+personaje1.getNombre()+"'"+personaje1.getApodo()+" vs "
+                    +"luchador del jugador 2  "+personaje2.getNombre()+"'"+personaje2.getApodo();
+            registrar(texto,reporte);
             do {
-                System.out.println("inicio del turno"+turnos);
+                registrar("Inicio del turno"+turnos,reporte);
                 if (numero == 1) {
                     if (personaje1.getSalud() > 0) {
-                        personaje1.atacar(personaje2);
+                        personaje1.atacar(personaje2,reporte);
                     }
                     if (personaje2.getSalud() > 0) {
-                        personaje2.atacar(personaje1);
+                        personaje2.atacar(personaje1,reporte);
                     }
                 } else {
                     if (personaje2.getSalud() > 0) {
-                        personaje2.atacar(personaje1);
+                        personaje2.atacar(personaje1,reporte);
                     }
                     if (personaje1.getSalud() > 0) {
-                        personaje1.atacar(personaje2);
+                        personaje1.atacar(personaje2,reporte);
                     }
                 }
                 turnos++;
             } while (personaje1.getSalud() > 0 && personaje2.getSalud() > 0 && turnos < 7);
             boolean AlguienMurio=false;
             if (personaje1.getSalud() <= 0) {
-                System.out.println("Murio "+ personaje1.getNombre()+" del jugador 1");
+                String muerte="Murio "+ personaje1.getNombre()+" del jugador 1";
+                registrar(muerte,reporte);
                 muertosJugador1.add(personaje1);
                 jugador1.remove(personaje1);
-                buffs.AplicarBuffs(personaje2,jugador2,muertosJugador2,scanner);
+                buffs.AplicarBuffs(personaje2,jugador2,muertosJugador2,scanner,reporte);
                 numero=1;
-                System.out.println("Arranca el jugador 1");
+               registrar("Arranca el jugador 1",reporte);
                 AlguienMurio=true;
             }else if (personaje2.getSalud() <= 0) {
                 muertosJugador2.add(personaje2);
-                System.out.println("Murio "+ personaje2.getNombre()+" del jugador 2");
+                String muerte="Murio "+ personaje2.getNombre()+" del jugador 2";
+                registrar(muerte,reporte);
                 jugador2.remove(personaje2);
-                buffs.AplicarBuffs(personaje1,jugador1,muertosJugador1,scanner);
+                buffs.AplicarBuffs(personaje1,jugador1,muertosJugador1,scanner,reporte);
                 numero=2;
-                System.out.println("Arranca el jugador 2");
+               registrar("Arranca el jugador 2",reporte);
                 AlguienMurio=true;
             }
             if (!AlguienMurio) {
-                System.out.println("Hubo empate nadie murio se sortea el inicio");
+                registrar("Hubo empate nadie murio se sortea el inicio",reporte);
                 numero=(int) (Math.random() * 2)+1;
                 if(numero==1){
-                    System.out.println("Arranca el jugador 1");
+                    registrar("arranca el jugador 1",reporte);
                 }else{
-                    System.out.println("Arranca el jugador 2");
+                    registrar("arranca el jugador 2",reporte);
                 }
             }
         }while(!jugador1.isEmpty() && !jugador2.isEmpty());
         if (jugador1.isEmpty()){
-            System.out.println("Jugador 2 gana");
-            System.out.println("Le quedaron vivos :" );
-            Recorrer_personajes(jugador2);
-            if (muertosJugador1.isEmpty()){
-                System.out.println("Felicidades nadie murio");
-            }else {
-                System.out.println("Los personajes que murieron son: ");
-                Recorrer_personajes(muertosJugador1);
-            }
-            System.out.println("Del jugador 2 murieron: ");
-            Recorrer_personajes(muertosJugador2);
-        }else{
-            System.out.println("Jugador 1 gana");
-            System.out.println("Le quedaron vivos :" );
-            Recorrer_personajes(jugador1);
+            registrar("Jugador 2 gana",reporte);
+            registrar("Le quedaron vivos :",reporte);
+            registrar(jugador2.toString(),reporte);
             if (muertosJugador2.isEmpty()){
-                System.out.println("Felicidades nadie murio");
+                registrar("Felicidades nadie murio",reporte);
             }else {
-                System.out.println("Los personajes que murieron son: ");
-                Recorrer_personajes(muertosJugador2);
+                registrar("Los personajes que murieron son: ",reporte);
+                registrar(muertosJugador2.toString(),reporte);
             }
-            System.out.println("Del jugador 1 murieron: ");
-            Recorrer_personajes(muertosJugador1);
+           registrar("Los personajes que murieron del jugador 1 :",reporte);
+            registrar(muertosJugador1.toString(),reporte);
+        }else{
+            registrar("Jugador 1 gana",reporte);
+            registrar("Le quedaron vivos :",reporte);
+            registrar(jugador1.toString(),reporte);
+            if (muertosJugador1.isEmpty()){
+                registrar("Felicidades nadie murio",reporte);
+            }else {
+                registrar("Los personajes que murieron son: ",reporte);
+                registrar(muertosJugador1.toString(),reporte);
+            }
+            registrar("Los personajes que murieron del jugador 2 :",reporte);
+            registrar(muertosJugador2.toString(),reporte);
         }
+        log.guardarPartida(reporte.toString());
     }
     public void Recorrer_personajes(List<Personaje>jugador){
         for (int i=0;i< jugador.size();i++){
@@ -308,5 +322,9 @@ public class Juego {
             System.out.println("Este es el personaje numero "+ (i+1));
             System.out.println(personaje.toString());
         }
+    }
+    private void registrar(String mensaje, StringBuilder reporte) {
+        System.out.println(mensaje);
+        reporte.append(mensaje).append("\n");
     }
 }
