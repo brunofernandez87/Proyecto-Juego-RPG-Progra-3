@@ -84,10 +84,9 @@ public class Juego {
     private void crearPersonajes(int jugador, Scanner scanner){
         int i=0;
        while (i < 3){
-           System.out.println("Creando el personaje numero "+(i+1)+"para el jugador "+jugador);
+           System.out.println("Creando el personaje numero "+(i+1)+" para el jugador "+jugador);
             Personaje personaje=null;
            try {
-            System.out.println("creando el personaje"+i);
             System.out.println("Escriba su nombre");
             String nombre= scanner.nextLine();
             System.out.println("Escriba su apodo");
