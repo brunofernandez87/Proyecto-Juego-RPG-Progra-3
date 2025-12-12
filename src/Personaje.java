@@ -91,6 +91,30 @@ public abstract class Personaje implements Atacar {
         this.armadura = armadura;
     }
 
+    public Integer getVelocidad() {
+        return velocidad;
+    }
+
+    public void setVelocidad(Integer velocidad) {
+        this.velocidad = velocidad;
+    }
+
+    public Integer getDestreza() {
+        return destreza;
+    }
+
+    public void setDestreza(Integer destreza) {
+        this.destreza = destreza;
+    }
+
+    public Integer getNivel() {
+        return nivel;
+    }
+
+    public void setNivel(Integer nivel) {
+        this.nivel = nivel;
+    }
+
     @Override
     public Integer PD() {
         return destreza*fuerza*nivel;

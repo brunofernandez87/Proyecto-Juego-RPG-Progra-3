@@ -3,7 +3,8 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Buffs {
-    private final String [] buffs={"Mas salud","Mas armadura","Revivir al primer personaje que murio","Mas fuerza"};
+    private final String [] buffs={"Mas salud","Mas armadura","Revivir al primer personaje que murio",
+            "Mas fuerza","Mas nivel","Mas destreza","Mas velocidad"};
     public void AplicarBuffs(Personaje personaje,
                              List<Personaje> jugador, List<Personaje> muertosJugador,
                              Scanner scanner,StringBuilder reporte) {
@@ -74,7 +75,21 @@ public class Buffs {
                 reporte.append("Se aumento la fuerza de tu personaje en 5").append("\n");
                 System.out.println("Se aumento la fuerza de tu personaje en 5");
                 break;
-
+            case "Mas nivel":
+                personaje.setNivel(personaje.getNivel()+2);
+                reporte.append("Se aumento el nivel de tu personaje en 2").append("\n");
+                System.out.println("Se aumento el nivel de tu personaje en 2");
+                break;
+            case "Mas destreza":
+                personaje.setDestreza(personaje.getDestreza()+5);
+                reporte.append("Se aumento la destreza de tu personaje en 5").append("\n");
+                System.out.println("Se aumento la destreza de tu personaje en 5");
+                break;
+            case "Mas velocidad":
+                personaje.setVelocidad(personaje.getVelocidad()+5);
+                reporte.append("Se aumento la velocidad de tu personaje en 5").append("\n");
+                System.out.println("Se aumento la velocidad de tu personaje en 5");
+                break;
         }
 
     }
