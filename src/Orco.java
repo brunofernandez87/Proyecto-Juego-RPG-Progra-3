@@ -6,7 +6,9 @@ public class Orco extends Personaje{
 
     @Override
     public void atacar(Personaje enemigo,StringBuilder reporte) {
-        double danio= ((((valorAtaque()*efectividadDisparo())-enemigo.valorDefensa())/500)*100)*1.1;
+        Double ED = this.efectividadDisparo();
+        Double VA = this.PD() * ED;
+        double danio= ((((VA*ED)-enemigo.valorDefensa())/500)*100)*1.1;
         if(danio <0){
             danio=0.0;
         }
