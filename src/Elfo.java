@@ -20,14 +20,18 @@ public class Elfo extends Personaje{
 
     @Override
     public String toString() {
-        return "Elfo {" +
-                "nombre='" + nombre + '\'' +
-                ", apodo='" + apodo + '\'' +
-                ", salud=" + salud +
-                ", edad=" + edad +
-                ", fuerza=" + fuerza +
-                ", nivel=" + nivel +
-                ", armadura=" + armadura +
-                '}';
+        return"\n-------------------------------\n" +
+                "   Nombre: " + nombre + "\n" +
+                "   Raza: " + "Elfo"+ "\n" +
+                "   Apodo: " + apodo + "\n" +
+                "   Nacimiento: " + fecha_de_nacimiento + "\n" +
+                "   Edad: " + edad + "\n" +
+                "   velocidad: " + velocidad + "\n" +
+                "   destreza: " + destreza + "\n" +
+                "   fuerza: " + fuerza + "\n" +
+                "   nivel: " + nivel + "\n" +
+                "   armadura: " + armadura + "\n" +
+                "   Salud: " + salud + "\n" +
+                "-------------------------------";
     }
 }
