@@ -240,7 +240,7 @@ public class Juego {
                     +"luchador del jugador 2  "+personaje2.getNombre()+"'"+personaje2.getApodo();
             registrar(texto,reporte);
             do {
-                registrar("Inicio del turno"+turnos,reporte);
+                registrar("-----Inicio del turno"+turnos+"-------",reporte);
                 if (numero == 1) {
                     if (personaje1.getSalud() > 0) {
                         personaje1.atacar(personaje2,reporte);
@@ -257,7 +257,7 @@ public class Juego {
                     }
                 }
                 turnos++;
-            } while (personaje1.getSalud() > 0 && personaje2.getSalud() > 0 && turnos < 7);
+            } while (personaje1.getSalud() > 0 && personaje2.getSalud() > 0 && turnos < 8);
             boolean AlguienMurio=false;
             if (personaje1.getSalud() <= 0) {
                 String muerte="Murio "+ personaje1.getNombre()+" del jugador 1";
