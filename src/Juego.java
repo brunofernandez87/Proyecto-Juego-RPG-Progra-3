@@ -229,7 +229,7 @@ public class Juego {
             registrar("Arranca el jugador 2",reporte);
         }
         do {
-            int turnos=0;
+            int turnos=1;
             int tamanio1=(jugador1.size());
             int tamanio2=(jugador2.size());
             int posicion1 = (int) (Math.random() * tamanio1);
