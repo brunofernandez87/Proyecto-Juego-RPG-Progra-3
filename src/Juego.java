@@ -191,10 +191,6 @@ public class Juego {
                         personaje=new Orco(nombre,apodo,
                                 nacimiento,edad,velocidad,destreza,fuerza,nivel,armadura);
                         System.out.println("Creando orco para jugador "+jugador);
-
-                        break;
-                    case 4:
-                        System.out.println("Hubo un error el numero es:"+raza);
                         break;
 
                 }
@@ -244,19 +240,19 @@ public class Juego {
                 if (numero == 1) {
                     if (personaje1.getSalud() > 0) {
                         personaje1.atacar(personaje2,reporte);
-                        esperar(2);
+                        esperar(1);
                     }
                     if (personaje2.getSalud() > 0) {
                         personaje2.atacar(personaje1,reporte);
-                        esperar(2);}
+                        esperar(1);}
                 } else {
                     if (personaje2.getSalud() > 0) {
                         personaje2.atacar(personaje1,reporte);
-                        esperar(2);
+                        esperar(1);
                     }
                     if (personaje1.getSalud() > 0) {
                         personaje1.atacar(personaje2,reporte);
-                        esperar(2);
+                        esperar(1);
                     }
                 }
                 ataques++;
@@ -326,7 +322,7 @@ public class Juego {
             Personaje personaje=jugador.get(i);
             System.out.println("Este es el personaje numero "+ (i+1));
             System.out.println(personaje.toString());
-            esperar(2);
+            esperar(1);
         }
     }
     private void registrar(String mensaje, StringBuilder reporte) {
