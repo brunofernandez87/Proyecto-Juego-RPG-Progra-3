@@ -1,6 +1,6 @@
 public interface Atacar {
-    public Integer PD();
-    public Double efectividadDisparo();
-    public Double valorAtaque();
-    public Integer valorDefensa();
+    Integer PD();
+    Double efectividadDisparo();
+    Double valorAtaque();
+    Integer valorDefensa();
 }

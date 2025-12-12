@@ -1,3 +1,4 @@
+
 public abstract class Personaje implements Atacar {
     protected  String nombre;
     protected Integer salud=100;
@@ -25,28 +26,36 @@ public abstract class Personaje implements Atacar {
             this.nivel = nivel;
             this.armadura = armadura;
         }
+        ComprobarMaximo();
 
     }
 
 
     public boolean Comprobar (Integer edad,Integer velocidad,Integer destreza, Integer fuerza,
                               Integer nivel, Integer armadura) throws Exception {
-        if (( Rango(edad,0,300)||
-                Rango(velocidad, 0, 10) ||
-                Rango(destreza, 0, 5) ||
-                Rango(fuerza, 0, 10) ||
-                Rango(nivel, 0, 10) ||
-                Rango(armadura, 0, 10))){
+        if (( Rango(edad, 300)||
+                Rango(velocidad, 10) ||
+                Rango(destreza, 5) ||
+                Rango(fuerza, 10) ||
+                Rango(nivel, 10) ||
+                Rango(armadura, 10))){
             throw new Exception("Una de las variables supera los parametros establecidos");
         }else{
             return true;
         }
     }
-    private boolean Rango(Integer valor,Integer min,Integer max){
-        if (valor<min || valor>max){
-            return true;
-        }else{
-            return false;
+    private boolean Rango(Integer valor, Integer max){
+        return valor < (Integer) 0 || valor > max;
+    }
+    private void ComprobarMaximo() throws Exception {
+        int maximo=0;
+        if (velocidad == 10) maximo++;
+        if (fuerza == 10) maximo++;
+        if (nivel == 10) maximo++;
+        if (armadura == 10) maximo++;
+        if (destreza == 5) maximo++;
+        if (maximo>=3){
+           throw new Exception("Pusiste mas de 2 variables al maximo");
         }
     }
 
@@ -66,6 +75,46 @@ public abstract class Personaje implements Atacar {
         this.salud = salud;
     }
 
+    public Integer getFuerza() {
+        return fuerza;
+    }
+
+    public void setFuerza(Integer fuerza) {
+        this.fuerza = fuerza;
+    }
+
+    public Integer getArmadura() {
+        return armadura;
+    }
+
+    public void setArmadura(Integer armadura) {
+        this.armadura = armadura;
+    }
+
+    public Integer getVelocidad() {
+        return velocidad;
+    }
+
+    public void setVelocidad(Integer velocidad) {
+        this.velocidad = velocidad;
+    }
+
+    public Integer getDestreza() {
+        return destreza;
+    }
+
+    public void setDestreza(Integer destreza) {
+        this.destreza = destreza;
+    }
+
+    public Integer getNivel() {
+        return nivel;
+    }
+
+    public void setNivel(Integer nivel) {
+        this.nivel = nivel;
+    }
+
     @Override
     public Integer PD() {
         return destreza*fuerza*nivel;
@@ -74,8 +123,7 @@ public abstract class Personaje implements Atacar {
     @Override
     public Double efectividadDisparo() {
         int valor= (int) (Math.random() * 100)+1;
-        double porcentaje=valor;
-        return porcentaje/100;
+        return (double) valor /100;
     }
 
     @Override
@@ -87,5 +135,5 @@ public abstract class Personaje implements Atacar {
     public Double valorAtaque() {
         return PD()*efectividadDisparo();
     }
-    public abstract void atacar(Personaje enemigo);
+    public abstract void atacar(Personaje enemigo,StringBuilder reporte);
 }
