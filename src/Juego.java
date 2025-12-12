@@ -215,6 +215,7 @@ public class Juego {
         }
     }
     public void Partida(Scanner scanner){
+        int turnos=1;
         Log log=new Log();
         Buffs buffs=new Buffs();
         StringBuilder reporte = new StringBuilder();
@@ -227,7 +228,7 @@ public class Juego {
             registrar("Arranca el jugador 2",reporte);
         }
         do {
-            int turnos=1;
+            int ataques=1;
             int tamanio1=(jugador1.size());
             int tamanio2=(jugador2.size());
             int posicion1 = (int) (Math.random() * tamanio1);
@@ -238,8 +239,8 @@ public class Juego {
                     +"luchador del jugador 2  "+personaje2.getNombre()+"'"+personaje2.getApodo();
             registrar(texto,reporte);
             esperar(2);
+            registrar("-----Inicio del turno"+turnos+"-------",reporte);
             do {
-                registrar("-----Inicio del turno"+turnos+"-------",reporte);
                 if (numero == 1) {
                     if (personaje1.getSalud() > 0) {
                         personaje1.atacar(personaje2,reporte);
@@ -258,8 +259,8 @@ public class Juego {
                         esperar(2);
                     }
                 }
-                turnos++;
-            } while (personaje1.getSalud() > 0 && personaje2.getSalud() > 0 && turnos < 8);
+                ataques++;
+            } while (personaje1.getSalud() > 0 && personaje2.getSalud() > 0 && ataques < 8);
             boolean AlguienMurio=false;
             if (personaje1.getSalud() <= 0) {
                 String muerte="Murio "+ personaje1.getNombre()+" del jugador 1";
@@ -281,7 +282,7 @@ public class Juego {
                 AlguienMurio=true;
             }
             if (!AlguienMurio) {
-                registrar("Hubo empate nadie murio se sortea el inicio",reporte);
+                registrar("----Hubo empate nadie murio se sortea el inicio------",reporte);
                 numero=(int) (Math.random() * 2)+1;
                 if(numero==1){
                     registrar("arranca el jugador 1",reporte);
@@ -289,6 +290,7 @@ public class Juego {
                     registrar("arranca el jugador 2",reporte);
                 }
             }
+            turnos++;
         }while(!jugador1.isEmpty() && !jugador2.isEmpty());
         if (jugador1.isEmpty()){
             registrar("Jugador 2 gana",reporte);
@@ -302,6 +304,7 @@ public class Juego {
             }
            registrar("Los personajes que murieron del jugador 1 :",reporte);
             registrar(muertosJugador1.toString(),reporte);
+            registrar("Felicitaciones Jugador 1 , las fuerzas mágicas del universo luz te abrazan!",reporte);
         }else{
             registrar("Jugador 1 gana",reporte);
             registrar("Le quedaron vivos :",reporte);
@@ -314,6 +317,7 @@ public class Juego {
             }
             registrar("Los personajes que murieron del jugador 2 :",reporte);
             registrar(muertosJugador2.toString(),reporte);
+            registrar("Felicitaciones Jugador 1 , las fuerzas mágicas del universo luz te abrazan!",reporte);
         }
         log.guardarPartida(reporte.toString());
     }
