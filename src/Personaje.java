@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+import java.util.List;
+
 public abstract class Personaje implements Atacar {
     protected  String nombre;
     protected Integer salud=100;
@@ -25,6 +28,7 @@ public abstract class Personaje implements Atacar {
             this.nivel = nivel;
             this.armadura = armadura;
         }
+        ComprobarMaximo();
 
     }
 
@@ -44,6 +48,17 @@ public abstract class Personaje implements Atacar {
     }
     private boolean Rango(Integer valor, Integer max){
         return valor < (Integer) 0 || valor > max;
+    }
+    private void ComprobarMaximo() throws Exception {
+        int maximo=0;
+        if (velocidad == 10) maximo++;
+        if (fuerza == 10) maximo++;
+        if (nivel == 10) maximo++;
+        if (armadura == 10) maximo++;
+        if (destreza == 5) maximo++;
+        if (maximo>=3){
+           throw new Exception("Pusiste mas de 2 variables al maximo");
+        }
     }
 
     public Integer getSalud() {

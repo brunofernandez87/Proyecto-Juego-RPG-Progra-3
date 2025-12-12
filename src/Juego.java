@@ -77,16 +77,13 @@ public class Juego {
 
 
     }
-    //comprobar que no todo este al maximo nadie es dios
-    //tirar un excepcion en caso de que todo este al maximo
-    //usar excepcions en caso de superar el limite de rango de edad,velocidad,etc..
-    // Sistema de puntos para crear personajes o limite de 2 stats al maximo
     private void crearPersonajes(int jugador, Scanner scanner){
         int i=0;
        while (i < 3){
            System.out.println("Creando el personaje numero "+(i+1)+" para el jugador "+jugador);
             Personaje personaje=null;
            try {
+            System.out.println("Puede poner hasta 2 stats al maximo");
             System.out.println("Escriba su nombre");
             String nombre= scanner.nextLine();
             System.out.println("Escriba su apodo");
