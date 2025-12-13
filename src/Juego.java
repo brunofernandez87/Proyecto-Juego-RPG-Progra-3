@@ -171,7 +171,7 @@ public class Juego {
             int fuerza=(int)(Math.random()*10)+1;
             int nivel=(int)(Math.random()*10)+1;
             int armadura=(int)(Math.random()*10)+1;
-            int anio=1900-edad;
+            int anio=1200-edad;
             String nacimiento="8/7/"+anio;
             Personaje personaje = null;
             int raza=(int)(Math.random()*3)+1;
