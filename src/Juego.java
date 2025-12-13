@@ -40,7 +40,7 @@ public class Juego {
                         muertosJugador2.clear();
                         System.out.println("¿Desea crear los personajes usted?");
                         String opcion2= scanner.nextLine();
-                        if (opcion2.equals("si")){
+                        if (opcion2.equalsIgnoreCase("si")){
                             crearPersonajes(1, scanner);
                             crearPersonajes(2, scanner);
                         }
