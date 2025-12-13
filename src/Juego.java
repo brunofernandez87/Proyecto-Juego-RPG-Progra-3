@@ -93,8 +93,12 @@ public class Juego {
             String nombre= scanner.nextLine();
             System.out.println("Escriba su apodo");
             String apodo=scanner.nextLine();
-            System.out.println("Escriba su fecha de nacimiento");
-            String nacimiento= scanner.nextLine();
+            System.out.println("Escriba su dia de nacimiento");
+            String dia= scanner.nextLine();
+            System.out.println("Escriba su mes de nacimiento");
+            String mes= scanner.nextLine();
+            System.out.println("Escriba su año de nacimiento tiene que ser menor o igual a 1200");
+            String anio= scanner.nextLine();
             System.out.println("Escriba su edad");
             System.out.println("Entre 0 y 300");
             int edad= Integer.parseInt(scanner.nextLine());
@@ -116,6 +120,7 @@ public class Juego {
             System.out.println("Eliga una raza:");
             System.out.println("Humano, Elfo u Orco");
             String raza=scanner.nextLine();
+            String nacimiento=dia+"/"+mes+"/"+anio;
                 switch(raza.toLowerCase()) {
                     case "humano":
                         personaje = new Humano(
