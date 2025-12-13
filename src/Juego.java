@@ -60,6 +60,11 @@ public class Juego {
                         break;
                     case 3:
                         System.out.println("Las reglas del juego son:");
+                        System.out.println("1. Preparación: Crea tus personajes o genera un ejército aleatorio.");
+                        System.out.println("2. Combate: Lucha por el trono. En cada turno, se intercambian 7 golpes por ronda.");
+                        System.out.println("3. Recompensa: El ganador de cada ronda recibe un BUFF aleatorio");
+                        System.out.println("4. Victoria: Gana el primero que deje al contrincante sin personajes.\n");
+                        System.out.println("¡Mucha suerte peleando por el trono de hierro!");
                         break;
                     case 4:
                         System.out.println("Borrando partidas anteriores");
