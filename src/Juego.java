@@ -280,8 +280,12 @@ public class Juego {
             if (!AlguienMurio) {
                 registrar("----Hubo empate nadie murio se sortea el inicio------",reporte);
                 numero=(int) (Math.random() * 2)+1;
-                registrar("El personaje del jugador 1 quedo con "+personaje1.getSalud()+" de salud",reporte);
-                registrar("El personaje del jugador 2 quedo con "+personaje2.getSalud()+" de salud",reporte);
+                registrar("El personaje del jugador 1 "
+                        +personaje1.getNombre() +"'"+personaje1.getApodo()+
+                        " quedo con "+personaje1.getSalud()+" de salud",reporte);
+                registrar("El personaje del jugador 2 "
+                        +personaje2.getNombre()+"'" +personaje2.getApodo()+
+                        " quedo con "+personaje2.getSalud()+" de salud",reporte);
                 if(numero==1){
                     registrar("arranca el jugador 1",reporte);
                 }else{
