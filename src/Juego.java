@@ -60,6 +60,11 @@ public class Juego {
                         break;
                     case 3:
                         System.out.println("Las reglas del juego son:");
+                        System.out.println("1. Preparación: Crea tus personajes o genera un ejército aleatorio.");
+                        System.out.println("2. Combate: Lucha por el trono. En cada turno, se intercambian 7 golpes por ronda.");
+                        System.out.println("3. Recompensa: El ganador de cada ronda recibe un BUFF aleatorio");
+                        System.out.println("4. Victoria: Gana el primero que deje al contrincante sin personajes.\n");
+                        System.out.println("¡Mucha suerte peleando por el trono de hierro!");
                         break;
                     case 4:
                         System.out.println("Borrando partidas anteriores");
@@ -88,8 +93,12 @@ public class Juego {
             String nombre= scanner.nextLine();
             System.out.println("Escriba su apodo");
             String apodo=scanner.nextLine();
-            System.out.println("Escriba su fecha de nacimiento");
-            String nacimiento= scanner.nextLine();
+            System.out.println("Escriba su dia de nacimiento");
+            String dia= scanner.nextLine();
+            System.out.println("Escriba su mes de nacimiento");
+            String mes= scanner.nextLine();
+            System.out.println("Escriba su año de nacimiento tiene que ser menor o igual a 1200");
+            String anio= scanner.nextLine();
             System.out.println("Escriba su edad");
             System.out.println("Entre 0 y 300");
             int edad= Integer.parseInt(scanner.nextLine());
@@ -111,6 +120,7 @@ public class Juego {
             System.out.println("Eliga una raza:");
             System.out.println("Humano, Elfo u Orco");
             String raza=scanner.nextLine();
+            String nacimiento=dia+"/"+mes+"/"+anio;
                 switch(raza.toLowerCase()) {
                     case "humano":
                         personaje = new Humano(
@@ -166,7 +176,7 @@ public class Juego {
             int fuerza=(int)(Math.random()*10)+1;
             int nivel=(int)(Math.random()*10)+1;
             int armadura=(int)(Math.random()*10)+1;
-            int anio=1900-edad;
+            int anio=1200-edad;
             String nacimiento="8/7/"+anio;
             Personaje personaje = null;
             int raza=(int)(Math.random()*3)+1;
@@ -280,6 +290,12 @@ public class Juego {
             if (!AlguienMurio) {
                 registrar("----Hubo empate nadie murio se sortea el inicio------",reporte);
                 numero=(int) (Math.random() * 2)+1;
+                registrar("El personaje del jugador 1 "
+                        +personaje1.getNombre() +"'"+personaje1.getApodo()+
+                        " quedo con "+personaje1.getSalud()+" de salud",reporte);
+                registrar("El personaje del jugador 2 "
+                        +personaje2.getNombre()+"'" +personaje2.getApodo()+
+                        " quedo con "+personaje2.getSalud()+" de salud",reporte);
                 if(numero==1){
                     registrar("arranca el jugador 1",reporte);
                 }else{

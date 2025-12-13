@@ -17,14 +17,16 @@ public abstract class Personaje implements Atacar {
                      Integer nivel, Integer armadura) throws Exception {
         this.nombre = nombre;
         this.apodo = apodo;
-        this.fecha_de_nacimiento = fecha_de_nacimiento;
-        if (Comprobar(edad, velocidad, destreza, fuerza, nivel, armadura)){
+        String division=fecha_de_nacimiento.split("/")[2];
+        int anio=Integer.parseInt(division);
+        if (Comprobar(edad, velocidad, destreza, fuerza, nivel, armadura,anio)){
             this.edad =edad;
             this.velocidad = velocidad;
             this.destreza = destreza;
             this.fuerza = fuerza;
             this.nivel = nivel;
             this.armadura = armadura;
+            this.fecha_de_nacimiento = fecha_de_nacimiento;
         }
         ComprobarMaximo();
 
@@ -32,13 +34,14 @@ public abstract class Personaje implements Atacar {
 
 
     public boolean Comprobar (Integer edad,Integer velocidad,Integer destreza, Integer fuerza,
-                              Integer nivel, Integer armadura) throws Exception {
+                              Integer nivel, Integer armadura,Integer anioNacimiento) throws Exception {
         if (( Rango(edad, 300)||
                 Rango(velocidad, 10) ||
                 Rango(destreza, 5) ||
                 Rango(fuerza, 10) ||
                 Rango(nivel, 10) ||
-                Rango(armadura, 10))){
+                Rango(armadura, 10)||
+                Rango(anioNacimiento, 1200))){
             throw new Exception("Una de las variables supera los parametros establecidos");
         }else{
             return true;
